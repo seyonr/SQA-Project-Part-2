@@ -48,4 +48,3 @@ class Transfer:
                                 y["balance"] += self.amount
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
-        
