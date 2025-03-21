@@ -1,6 +1,9 @@
 from print_error import log_constraint_error
+from read import read_old_bank_accounts
+from write import write_new_current_accounts
+
 class Create:
-    def __init__(self, amount, account_num, account_name,status, is_admin, plan):
+    def __init__(self, amount, account_num, account_name, status, is_admin, plan):
         self.amount = amount
         self.account_num = account_num
         self.account_name = account_name
@@ -9,9 +12,6 @@ class Create:
         self.plan = plan
 
     def create(self):
-        from read import read_old_bank_accounts
-        from write import write_new_current_accounts
-
         file_path = ""  # Set to correct path file
         accounts = read_old_bank_accounts(file_path)  # Load all valid accounts
 
@@ -22,8 +22,9 @@ class Create:
                 'name': self.account_name,
                 'status': self.status,
                 'balance': self.amount,
-                'total_transactions': 0
+                'total_transactions': 0,
+                'plan': self.plan
             })
             write_new_current_accounts(accounts, file_path)
         else:
-            log_constraint_error("Unprivileged User Error", "User does not have admin privileges")
+            log_constraint_error("Unprivileged User Error", "Standard user does not have admin privileges")
