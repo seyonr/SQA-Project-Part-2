@@ -1,4 +1,5 @@
 from print_error import log_constraint_error
+from read import read_old_bank_accounts
 from write import write_new_current_accounts
 
 class Withdrawal:
@@ -9,8 +10,6 @@ class Withdrawal:
 
     # Pass the accounts data to another function or file
     def withdrawal(self):
-        from read import read_old_bank_accounts
-
         file_path = "" # Set to correct path file 
         accounts = read_old_bank_accounts(file_path) # Will hold all valid accounts
         

@@ -1,4 +1,6 @@
 from print_error import log_constraint_error
+from read import read_old_bank_accounts
+from write import write_new_current_accounts
 
 class Transfer:
     def __init__(self, amount, account_num_from, account_num_to, is_admin):
@@ -8,9 +10,7 @@ class Transfer:
         self.is_admin = is_admin
 
     # Pass the accounts data to another function or file
-    def withdrawal(self):
-        from read import read_old_bank_accounts
-
+    def transfer(self):
         file_path = "" # Set to correct path file 
         accounts = read_old_bank_accounts(file_path) # Will hold all valid accounts
         
@@ -26,6 +26,7 @@ class Transfer:
                         for y in accounts:
                             if(int(y['account_number']) == self.account_num_to):
                                 y["balance"] += self.amount
+                        write_new_current_accounts(accounts, file_path)
             
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
@@ -46,5 +47,6 @@ class Transfer:
                         for y in accounts:
                             if(int(y['account_number']) == self.account_num_to):
                                 y["balance"] += self.amount
+                        write_new_current_accounts(accounts, file_path)
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
