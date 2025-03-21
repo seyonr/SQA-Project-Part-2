@@ -21,11 +21,11 @@ class Disable:
                         x['status']="A"
                     
                     write_new_current_accounts(accounts, file_path)
+                    return
                 
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
                 
-                return
         else:
            log_constraint_error("Unprivileged User Error", "Standard user does not have admin privileges")
 
