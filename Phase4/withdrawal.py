@@ -1,4 +1,5 @@
 from print_error import log_constraint_error
+from write import write_new_current_accounts
 
 class Withdrawal:
     def __init__(self, amount, account_num, is_admin):
@@ -20,6 +21,7 @@ class Withdrawal:
                         log_constraint_error("Balance Violation Error", "Insufficent balance")
                     else:
                         x["balance"] -= self.amount
+                        write_new_current_accounts(accounts, file_path)
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
 
@@ -34,5 +36,6 @@ class Withdrawal:
 
                     else:
                         x["balance"] -= self.amount
+                        write_new_current_accounts(accounts, file_path)
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")

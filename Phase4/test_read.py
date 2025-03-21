@@ -1,14 +1,14 @@
 #### Acutal tester for the number of lines of code ####
-# from read import read_old_bank_accounts
+from read import read_old_bank_accounts
 
-# def main():
-#     accounts = read_old_bank_accounts("accounts.txt")
-#     print("\nValid accounts parsed:")
-#     for account in accounts:
-#         print(account)
+def main():
+    accounts = read_old_bank_accounts("accounts.txt")
+    print("\nValid accounts parsed:")
+    for account in accounts:
+        print(account)
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
 
 
 #### Use to find the count of the lines for each character ####
