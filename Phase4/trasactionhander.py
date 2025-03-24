@@ -1,3 +1,4 @@
+# Import
 from login import Login
 from withdrawal import Withdrawal
 from transfer import Transfer
@@ -8,6 +9,7 @@ from delete import Delete
 from disable import Disable
 from changeplan import ChangePlan
 
+# Class which calls instance of all classes 
 class TransactionHandler:
     def __init__(self, amount = 0, account_num = 0, account_name = "", account_num_to = 0, status = "", plan = "", is_admin = False):
         self.amount = amount
