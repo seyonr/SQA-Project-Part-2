@@ -39,11 +39,13 @@ def write_master_bank_accounts(accounts, file_path):
 
 
 
-# === MAIN ===
-if __name__ == "__main__":
-    input_file = "accounts.txt"
-    output_file = "new_master_transactions.txt"
+# Testing purposes
 
-    accounts = read_old_bank_accounts(input_file)
-    write_master_bank_accounts(accounts, output_file)
-    print(f"Master Bank Accounts File written to {output_file}")
+# # === MAIN ===
+# if __name__ == "__main__":
+#     input_file = "accounts.txt"
+#     output_file = "new_master_transactions.txt"
+
+#     accounts = read_old_bank_accounts(input_file)
+#     write_master_bank_accounts(accounts, output_file)
+#     print(f"Master Bank Accounts File written to {output_file}")

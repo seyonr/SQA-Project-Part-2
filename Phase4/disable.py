@@ -1,7 +1,7 @@
 # Import 
 from print_error import log_constraint_error
 from read import read_old_bank_accounts
-from write import write_new_current_accounts
+from write_master import write_master_bank_accounts
 
 class Disable:
     # Constuctor 
@@ -10,7 +10,7 @@ class Disable:
         self.is_admin = is_admin
 
     def disable(self):
-        file_path = "" # Will be set to the path of the file itself
+        file_path = "accounts.txt" # Will be set to the path of the file itself
         accounts = read_old_bank_accounts(file_path) # Stores the accounts from the txt file 
         
         if(self.is_admin): # Handles admin disable
@@ -21,7 +21,7 @@ class Disable:
                     else:
                         x['status']="A"
                     
-                    write_new_current_accounts(accounts, file_path) # Write to file
+                    write_master_bank_accounts(accounts, file_path) # Writes to file
                     return
                 
                 else: # Handles standard resistrction 

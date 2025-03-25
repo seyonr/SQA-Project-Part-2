@@ -1,7 +1,7 @@
 # Import 
 from print_error import log_constraint_error
 from read import read_old_bank_accounts
-from write import write_new_current_accounts
+from write_master import write_master_bank_accounts
 
 class Paybill:
     # Constructor 
@@ -12,7 +12,7 @@ class Paybill:
 
     # Handles paybill 
     def paybill(self):
-        file_path = "" # Will be set to the path of the file itself
+        file_path = "accounts.txt" # Will be set to the path of the file itself
         accounts = read_old_bank_accounts(file_path) # Stores the accounts from the txt file 
         
         if(self.is_admin): # Handles admin paybill
@@ -22,7 +22,7 @@ class Paybill:
                         log_constraint_error("Balance Violation Error", "Insufficent balance")
                     else:
                         x["balance"] -= self.amount
-                        write_new_current_accounts(accounts, file_path) # Writes to file
+                        write_master_bank_accounts(accounts, file_path) # Writes to file
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
 
@@ -37,7 +37,7 @@ class Paybill:
 
                     else:
                         x["balance"] -= self.amount
-                        write_new_current_accounts(accounts, file_path) # Writes to file
+                        write_master_bank_accounts(accounts, file_path) # Writes to file
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
         
