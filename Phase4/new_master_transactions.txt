@@ -1,8 +1,8 @@
 00001 John Doe             A 01234.56 0010
-12345 Alice Wonderland     D 00000.00 0005
 00002 Bob Smith            A 04567.89 0011
-12245 Carol King           A 06789.01 0008
 00003 Michael Jordan       A 10000.00 0020
 00004 Sarah Connor         A 12345.78 0007
 00005 Bruce Wayne          A 04567.89 0002
 00006 Diana Prince         D 07890.12 0030
+12245 Carol King           A 06789.01 0008
+12345 Alice Wonderland     D 00000.00 0005

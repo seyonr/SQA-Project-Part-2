@@ -22,7 +22,9 @@ class Withdrawal:
                         log_constraint_error("Balance Violation Error", "Insufficent balance")
                     else: # Handles withdrawal from account
                         x["balance"] -= self.amount
+                        x['total_transactions'] += 1
                         write_new_current_accounts(accounts, file_path) # Writes to file
+    
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
 
