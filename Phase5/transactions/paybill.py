@@ -1,7 +1,7 @@
 # Import 
 from print_error import log_constraint_error
 from read import read_old_bank_accounts
-from write_master import write_master_bank_accounts
+from update import update
 
 class Paybill:
     # Constructor 
@@ -23,7 +23,9 @@ class Paybill:
                     else:
                         x['total_transactions'] += 1
                         x["balance"] -= self.amount
-                        write_master_bank_accounts(accounts, file_path) # Writes to file
+
+                        update(accounts, file_path)
+                        return
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
 
@@ -39,7 +41,8 @@ class Paybill:
                     else:
                         x['total_transactions'] += 1
                         x["balance"] -= self.amount
-                        write_master_bank_accounts(accounts, file_path) # Writes to file
+
+                        update(accounts, file_path)
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
         

@@ -1,7 +1,7 @@
 # Import 
 from print_error import log_constraint_error
 from read import read_old_bank_accounts
-from write_master import write_master_bank_accounts
+from update import update
 
 class Deposit:
     # Constructor
@@ -23,7 +23,9 @@ class Deposit:
                     elif(x['plan'] == "SP"):
                         x['total_transactions'] += 1
                         x["balance"] += self.amount - 0.05 # Deducting 5 cents for "student" account.
-                    write_master_bank_accounts(accounts, file_path) # Writes to file
+                    
+                    update(accounts, file_path)
+                    return
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
         else: # Handles standard user deposit
@@ -35,6 +37,8 @@ class Deposit:
                     elif(x['plan'] == "SP"):
                         x['total_transactions'] += 1
                         x["balance"] += self.amount - 0.05 # Deducting 5 cents for "student" account.
-                    write_master_bank_accounts(accounts, file_path) # Writes to file
+                    
+                    update(accounts, file_path)
+                    return
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")

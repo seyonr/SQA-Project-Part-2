@@ -1,7 +1,7 @@
 # Import 
 from print_error import log_constraint_error
 from read import read_old_bank_accounts
-from write_master import write_master_bank_accounts
+from update import update
 
 class Disable:
     # Constuctor 
@@ -21,7 +21,7 @@ class Disable:
                     else:
                         x['status']="A"
                     
-                    write_master_bank_accounts(accounts, file_path) # Writes to file
+                    update(accounts, file_path)
                     return
                 
                 else: # Handles standard resistrction 

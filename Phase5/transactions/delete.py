@@ -1,7 +1,7 @@
 # Import 
 from print_error import log_constraint_error
 from read import read_old_bank_accounts
-from write_master import write_master_bank_accounts
+from update import update
 
 class Delete:
     def __init__(self, account_num, is_admin):
@@ -17,7 +17,8 @@ class Delete:
             for i, x in enumerate(accounts):
                 if(int(x['account_number']) == self.account_num):
                     accounts.pop(i)
-                write_master_bank_accounts(accounts, file_path) # Writes to file
+
+                update(accounts, file_path)
                 return
         else: # Handles standrd resistrction
             log_constraint_error("Unprivileged User Error", "Standard user does not have admin privileges")

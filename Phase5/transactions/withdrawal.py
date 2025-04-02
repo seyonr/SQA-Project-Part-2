@@ -1,7 +1,7 @@
 # Imports
 from print_error import log_constraint_error
 from read import read_old_bank_accounts
-from write_master import write_master_bank_accounts
+from update import update
 
 class Withdrawal:
     # Default Constructor 
@@ -23,7 +23,8 @@ class Withdrawal:
                     else: # Handles withdrawal from account
                         x["balance"] -= self.amount
                         x['total_transactions'] += 1
-                        write_master_bank_accounts(accounts, file_path) # Writes to master file to update transaction count
+                        update(accounts, file_path)
+                        return
     
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
@@ -38,6 +39,7 @@ class Withdrawal:
                     else: # Handles withdrawal from account
                         x['total_transactions'] += 1
                         x["balance"] -= self.amount
-                        write_master_bank_accounts(accounts, file_path) # Writes to file
+                        update(accounts, file_path)
+                        return
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")

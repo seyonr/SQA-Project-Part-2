@@ -1,3 +1,4 @@
+# Updates the accounts.txt, which will then be used to write the master as well as curent accounts file
 def update(accounts, file_path):
     try:
         with open(file_path, "r") as f:

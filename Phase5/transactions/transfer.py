@@ -1,7 +1,7 @@
 # Imports
 from print_error import log_constraint_error
 from read import read_old_bank_accounts
-from write_master import write_master_bank_accounts
+from update import update
 
 class Transfer:
     # Constructor 
@@ -28,7 +28,9 @@ class Transfer:
                         for y in accounts: # Subtracts from account to transfer to 
                             if(int(y['account_number']) == self.account_num_to):
                                 y["balance"] += self.amount
-                        write_master_bank_accounts(accounts, file_path) # Writes to file
+                        
+                        update(accounts, file_path)
+                        return
             
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")
@@ -49,6 +51,8 @@ class Transfer:
                         for y in accounts: # Subtracts from account to transfer to 
                             if(int(y['account_number']) == self.account_num_to):
                                 y["balance"] += self.amount
-                        write_master_bank_accounts(accounts, file_path) # Writes to file
+                        
+                        update(accounts, file_path)
+                        return
                 else:
                     log_constraint_error("Account Violation Error", "Account does not exisit")

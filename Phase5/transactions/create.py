@@ -1,7 +1,7 @@
 # Import 
 from print_error import log_constraint_error
 from read import read_old_bank_accounts
-from write_master import write_master_bank_accounts
+from update import update
 
 class Create:
     # Constructor 
@@ -39,6 +39,6 @@ class Create:
                 'plan': self.plan
             })
 
-            write_master_bank_accounts(accounts, file_path)
+            update(accounts, file_path)
         else:
-            log_constraint_error("Unprivileged User Error", "Standard user does not have admin privileges")
+            log_constraint_error("Unprivileged User Error", "Standard user does not have admin privileges"),
