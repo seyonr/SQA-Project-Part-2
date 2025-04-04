@@ -15,28 +15,33 @@ class Transfer:
     def transfer(self):
         file_path = "accounts.txt" # Will be set to the path of the file itself
         accounts = read_old_bank_accounts(file_path) # Stores the accounts from the txt file 
-        
-        if(self.is_admin): # Handles admin transfer 
+
+        if(self.is_admin): # Handles admin transfer
+            from_account_found = False # Will prevent constant logging of "Account not existing"
             for x in accounts:
-                if(int(x['account_number']) == self.account_num_from):
+                if (int(x['account_number']) == self.account_num_from):
+                    from_account_found = True
                     if(self.amount > int(x["balance"])): # Handles insufficent transfer amount
                         log_constraint_error("Balance Violation Error", "Insufficent balance")
                     else: # Handles transfer 
                         x["balance"] -= self.amount # Subtract from account to transfer from
-                        
+
                         for y in accounts: # Subtracts from account to transfer to 
                             if(int(y['account_number']) == self.account_num_to):
                                 y["balance"] += self.amount
                         write_master_bank_accounts(accounts, file_path) # Writes to file
+                    break
             
-                else:
-                    log_constraint_error("Account Violation Error", "Account does not exisit")
+            if not from_account_found:
+               log_constraint_error("Account Violation Error", "Account does not exisit")
 
         else: # Handles standard transfer
+            from_account_found = False
             for x in accounts:
-                if(int(x['account_number']) == self.account_num):
+                if(int(x['account_number']) == self.account_num_from):
+                    from_account_found = True
                     if(self.amount > 1000): # Handles standard user transfer limit
-                        log_constraint_error("Withdrawl Limit Violation", "Standard user cannot withdraw above $1000")
+                        log_constraint_error("Transfer Limit Violation", "Standard user cannot transfer above $1000")
                     
                     elif(self.amount > int(x["balance"])): # Handles insufficent transfer amount
                         log_constraint_error("Balance Violation Error", "Insufficent balance")
@@ -48,5 +53,7 @@ class Transfer:
                             if(int(y['account_number']) == self.account_num_to):
                                 y["balance"] += self.amount
                         write_master_bank_accounts(accounts, file_path) # Writes to file
-                else:
-                    log_constraint_error("Account Violation Error", "Account does not exisit")
+                    break
+            if not from_account_found:
+                log_constraint_error("Account Violation Error", "Account does not exisit")
+
