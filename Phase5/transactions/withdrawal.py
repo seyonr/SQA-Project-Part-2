@@ -15,31 +15,36 @@ class Withdrawal:
         file_path = "accounts.txt" 
         accounts = read_old_bank_accounts(file_path) # Stores the accounts from the txt file 
         
+        account_found = False  # Flag to track if an account is found
+
         if(self.is_admin): # Handles admin withdrawal
             for x in accounts:
                 if(int(x['account_number']) == self.account_num): 
-                    if(self.amount > int(x["balance"])): # Handles insufficent balance withdrawal
-                        log_constraint_error("Balance Violation Error", "Insufficent balance")
+                    account_found = True  # Account found
+                    if(self.amount > int(x["balance"])): # Handles insufficient balance withdrawal
+                        log_constraint_error("Balance Violation Error", "Insufficient balance")
                     else: # Handles withdrawal from account
                         x["balance"] -= self.amount
                         x['total_transactions'] += 1
                         update(accounts, file_path)
                         return
     
-                else:
-                    log_constraint_error("Account Violation Error", "Account does not exisit")
-
-        else: # Handles standard withdrawal
+            if not account_found:  # Log error once if account not found
+                log_constraint_error("Account Violation Error", "Account does not exist")
+        
+        else: # Handles standard user withdrawal
             for x in accounts:
                 if(int(x['account_number']) == self.account_num):
-                    if(self.amount > 1000): # Handles stanard withdrawal limit
+                    account_found = True  # Account found
+                    if(self.amount > 1000): # Handles standard withdrawal limit
                         log_constraint_error("Withdrawl Limit Violation", "Standard user cannot withdraw above $1000")
-                    elif(self.amount > int(x["balance"])): # Handles insufficent balance 
-                        log_constraint_error("Balance Violation Error", "Insufficent balance")
+                    elif(self.amount > int(x["balance"])): # Handles insufficient balance 
+                        log_constraint_error("Balance Violation Error", "Insufficient balance")
                     else: # Handles withdrawal from account
                         x['total_transactions'] += 1
                         x["balance"] -= self.amount
                         update(accounts, file_path)
                         return
-                else:
-                    log_constraint_error("Account Violation Error", "Account does not exisit")
+            
+            if not account_found:  # Log error once if account not found
+                log_constraint_error("Account Violation Error", "Account does not exist")
